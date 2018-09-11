@@ -83,7 +83,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
         PlayerInput input;
-        Animator anim;
+        GunController equippedGun;
 
         private Rigidbody m_RigidBody;
         private CapsuleCollider m_Capsule;
@@ -126,7 +126,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init (transform, cam.transform);
             input = GetComponent<PlayerInput>();
-            anim = GetComponent<Animator>();
+            equippedGun = GetComponentInChildren<GunController>();
         }
 
 
@@ -138,22 +138,21 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Jump = true;
             }
-            anim.ResetTrigger("Shoot");
             if(input.Shoot)
             {
-                anim.SetTrigger("Shoot");
+                equippedGun.Shoot();
             }
             if(input.Reload)
             {
-                anim.SetTrigger("Reload");
+                equippedGun.Reload();
             }
-            if(input.Aim && !anim.GetBool("Aiming"))
+            if(input.Aim && !equippedGun.IsAiming)
             {
-                anim.SetBool("Aiming", true);
+                equippedGun.IsAiming = true;
             }
-            else if(!input.Aim && anim.GetBool("Aiming"))
+            else if(!input.Aim && equippedGun.IsAiming)
             {
-                anim.SetBool("Aiming", false);
+                equippedGun.IsAiming = false;
             }
         }
 
@@ -207,6 +206,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jump = false;
         }
 
+
+        void EquipGun(GameObject newGun)
+        {
+            equippedGun = newGun.GetComponent<GunController>();
+        }
 
         private float SlopeMultiplier()
         {
