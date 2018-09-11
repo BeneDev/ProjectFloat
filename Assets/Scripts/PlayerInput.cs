@@ -52,6 +52,14 @@ public class PlayerInput : MonoBehaviour, IInput {
         }
     }
 
+    public bool Aim
+    {
+        get
+        {
+            return Input.GetButton("Aim");
+        }
+    }
+
     public bool Reload
     {
         get

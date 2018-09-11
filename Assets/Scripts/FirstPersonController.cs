@@ -147,6 +147,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 anim.SetTrigger("Reload");
             }
+            if(input.Aim && !anim.GetBool("Aiming"))
+            {
+                anim.SetBool("Aiming", true);
+            }
+            else if(!input.Aim && anim.GetBool("Aiming"))
+            {
+                anim.SetBool("Aiming", false);
+            }
         }
 
 
