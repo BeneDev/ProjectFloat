@@ -12,9 +12,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [Serializable]
         public class MovementSettings
         {
-            public float ForwardSpeed = 8.0f;   // Speed when walking forward
-            public float BackwardSpeed = 4.0f;  // Speed when walking backwards
-            public float StrafeSpeed = 4.0f;    // Speed when walking sideways
+            public float ForwardSpeed = 8.0f;   // Speed when walking forward // Speed when walking sideways
             public float RunMultiplier = 2.0f;   // Speed when sprinting
 	        public KeyCode RunKey = KeyCode.LeftShift;
             public float JumpForce = 30f;
@@ -25,25 +23,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             private bool m_Running;
 #endif
 
+
             public void UpdateDesiredTargetSpeed(Vector2 input)
             {
 	            if (input == Vector2.zero) return;
-				if (input.x > 0 || input.x < 0)
-				{
-					//strafe
-					CurrentTargetSpeed = StrafeSpeed;
-				}
-				if (input.y < 0)
-				{
-					//backwards
-					CurrentTargetSpeed = BackwardSpeed;
-				}
-				if (input.y > 0)
-				{
-					//forwards
-					//handled last as if strafing and moving forward at the same time forwards speed should take precedence
-					CurrentTargetSpeed = ForwardSpeed;
-				}
+				CurrentTargetSpeed = ForwardSpeed;
 #if !MOBILE_INPUT
 	            if (Input.GetKey(RunKey))
 	            {
@@ -84,6 +68,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public AdvancedSettings advancedSettings = new AdvancedSettings();
         PlayerInput input;
         GunController equippedGun;
+        Animator anim;
 
         private Rigidbody m_RigidBody;
         private CapsuleCollider m_Capsule;
@@ -111,11 +96,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             get
             {
- #if !MOBILE_INPUT
+                anim.SetBool("Running", movementSettings.Running);
 				return movementSettings.Running;
-#else
-	            return false;
-#endif
             }
         }
 
@@ -127,6 +109,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             mouseLook.Init (transform, cam.transform);
             input = GetComponent<PlayerInput>();
             equippedGun = GetComponentInChildren<GunController>();
+            anim = GetComponent<Animator>();
         }
 
 
