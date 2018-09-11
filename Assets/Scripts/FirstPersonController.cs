@@ -138,6 +138,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Jump = true;
             }
+            anim.ResetTrigger("Shoot");
             if(input.Shoot)
             {
                 anim.SetTrigger("Shoot");
