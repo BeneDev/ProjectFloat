@@ -138,6 +138,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Jump = true;
             }
+            if(input.Shoot)
+            {
+                anim.SetTrigger("Shoot");
+            }
+            if(input.Reload)
+            {
+                anim.SetTrigger("Reload");
+            }
         }
 
 

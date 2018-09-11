@@ -16,6 +16,8 @@ public interface IInput {
 
     bool Shoot { get; }
 
+    bool Reload { get; }
+
     bool Interact { get; }
 
 }
