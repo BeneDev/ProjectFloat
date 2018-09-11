@@ -47,6 +47,11 @@ public class GunController : MonoBehaviour {
         anim.SetTrigger("Shoot");
     }
 
+    public void ResetShoot()
+    {
+        anim.ResetTrigger("Shoot");
+    }
+
     public virtual void Reload()
     {
         anim.SetTrigger("Reload");
