@@ -10,7 +10,7 @@ public interface IInput {
 
     Vector3 MouseEulers { get; }
 
-    int Jump { get; }
+    bool Jump { get; }
 
     bool Run { get; }
 

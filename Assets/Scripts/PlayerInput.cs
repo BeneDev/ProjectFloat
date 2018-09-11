@@ -28,19 +28,11 @@ public class PlayerInput : MonoBehaviour, IInput {
         }
     }
 
-    public int Jump
+    public bool Jump
     {
         get
         {
-            if (Input.GetButtonDown("Jump"))
-            {
-                return 1;
-            }
-            else if (Input.GetButton("Jump"))
-            {
-                return 2;
-            }
-            return 0;
+            return Input.GetButtonDown("Jump");
         }
     }
 
