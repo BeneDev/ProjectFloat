@@ -20,11 +20,13 @@ public class PlayerController : MonoBehaviour {
     float rotationY = 0f;
 
     PlayerInput input;
+    Rigidbody rb;
 
     private void Awake()
     {
         cam = Camera.main;
         input = GetComponent<PlayerInput>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -48,11 +50,13 @@ public class PlayerController : MonoBehaviour {
         Vector3 moveDirection = (h * right + v * forward);
         if(!input.Run)
         {
-            transform.position += moveDirection * speed * Time.deltaTime;
+            //transform.position += moveDirection * speed * Time.deltaTime;
+            rb.velocity = moveDirection * speed * Time.deltaTime;
         }
         else
         {
-            transform.position += moveDirection * runSpeed * Time.deltaTime;
+            //transform.position += moveDirection * runSpeed * Time.deltaTime;
+            rb.velocity = moveDirection * runSpeed * Time.deltaTime;
         }
     }
 
