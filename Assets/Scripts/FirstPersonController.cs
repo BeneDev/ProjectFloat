@@ -70,6 +70,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         GunController equippedGun;
         Animator anim;
 
+        [SerializeField] LayerMask gunLayer;
+        [SerializeField] Vector3 gunGrabExtents;
+        [SerializeField] Transform gunHolder;
+
         private Rigidbody m_RigidBody;
         private CapsuleCollider m_Capsule;
         private float m_YRotation;
@@ -121,28 +125,35 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Jump = true;
             }
-            if(input.Shoot)
+            if(equippedGun)
             {
-                anim.SetBool("Aiming", true);
-                equippedGun.Shoot();
+                if (input.Shoot)
+                {
+                    anim.SetBool("Aiming", true);
+                    equippedGun.Shoot();
+                }
+                else if (!input.Shoot && !input.Aim)
+                {
+                    anim.SetBool("Aiming", false);
+                }
+                if (input.Reload)
+                {
+                    equippedGun.Reload();
+                }
+                if (input.Aim && !equippedGun.IsAiming)
+                {
+                    equippedGun.IsAiming = true;
+                    anim.SetBool("Aiming", true);
+                }
+                else if (!input.Aim && equippedGun.IsAiming)
+                {
+                    equippedGun.IsAiming = false;
+                    anim.SetBool("Aiming", false);
+                }
             }
-            else if(!input.Shoot && !input.Aim)
+            if(input.Interact)
             {
-                anim.SetBool("Aiming", false);
-            }
-            if(input.Reload)
-            {
-                equippedGun.Reload();
-            }
-            if(input.Aim && !equippedGun.IsAiming)
-            {
-                equippedGun.IsAiming = true;
-                anim.SetBool("Aiming", true);
-            }
-            else if(!input.Aim && equippedGun.IsAiming)
-            {
-                equippedGun.IsAiming = false;
-                anim.SetBool("Aiming", false);
+                EquipGun();
             }
         }
 
@@ -196,9 +207,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jump = false;
         }
 
-        void EquipGun(GameObject newGun)
+        void EquipGun()
         {
-            equippedGun = newGun.GetComponent<GunController>();
+            Collider[] guns = Physics.OverlapBox(cam.transform.position, gunGrabExtents, cam.transform.rotation, gunLayer.value);
+            foreach (Collider gun in guns)
+            {
+                if (gun.gameObject.GetComponent<GunController>())
+                {
+                    equippedGun = gun.gameObject.GetComponent<GunController>();
+                    equippedGun.transform.parent = gunHolder;
+                    equippedGun.transform.localPosition = Vector3.zero;
+                    break;
+                }
+            }
         }
 
         private float SlopeMultiplier()
