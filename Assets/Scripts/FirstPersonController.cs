@@ -123,7 +123,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             if(input.Shoot)
             {
+                anim.SetBool("Aiming", true);
                 equippedGun.Shoot();
+            }
+            else if(!input.Shoot && !input.Aim)
+            {
+                anim.SetBool("Aiming", false);
             }
             if(input.Reload)
             {
@@ -132,10 +137,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if(input.Aim && !equippedGun.IsAiming)
             {
                 equippedGun.IsAiming = true;
+                anim.SetBool("Aiming", true);
             }
             else if(!input.Aim && equippedGun.IsAiming)
             {
                 equippedGun.IsAiming = false;
+                anim.SetBool("Aiming", false);
             }
         }
 
@@ -188,7 +195,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             m_Jump = false;
         }
-
 
         void EquipGun(GameObject newGun)
         {
