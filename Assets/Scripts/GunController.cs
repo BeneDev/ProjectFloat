@@ -24,6 +24,8 @@ public class GunController : MonoBehaviour {
     [SerializeField] protected float numberOfShots = 1f;
     [Range(0, 100), SerializeField] protected float chanceToMiss = 5f;
     protected bool isAiming = false;
+    [SerializeField] Transform mainMuzzle;
+    bool isShooting = false;
 
     Animator anim;
 
@@ -44,13 +46,18 @@ public class GunController : MonoBehaviour {
 
     public virtual void Shoot()
     {
-        anim.SetTrigger("Shoot");
-
+        if(!isShooting)
+        {
+            anim.SetTrigger("Shoot");
+            GameManager.Instance.GetMuzzleFlash(mainMuzzle.position, transform.forward);
+            isShooting = true;
+        }
     }
 
     public void ResetShoot()
     {
         anim.ResetTrigger("Shoot");
+        isShooting = false;
     }
 
     public virtual void Reload()

@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 33772244028571678}
   - component: {fileID: 23459799175062272}
   m_Layer: 9
-  m_Name: Cylinder
+  m_Name: MainMuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1403,3 +1403,4 @@ MonoBehaviour:
   recoil: 1
   numberOfShots: 1
   chanceToMiss: 5
+  mainMuzzle: {fileID: 4789442144409362}
