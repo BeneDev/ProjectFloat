@@ -45,6 +45,7 @@ public class GunController : MonoBehaviour {
     public virtual void Shoot()
     {
         anim.SetTrigger("Shoot");
+
     }
 
     public void ResetShoot()
