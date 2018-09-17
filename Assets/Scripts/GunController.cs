@@ -17,6 +17,14 @@ public class GunController : MonoBehaviour {
         }
     }
 
+    public Sprite CrosshairImage
+    {
+        get
+        {
+            return crosshairImage;
+        }
+    }
+
     [SerializeField] protected float damage = 10f;
     [SerializeField] protected float shotDelay = 1f;
     [Range(0, 100), SerializeField] protected float critchance = 10f;
@@ -26,6 +34,8 @@ public class GunController : MonoBehaviour {
     protected bool isAiming = false;
     [SerializeField] Transform mainMuzzle;
     bool isShooting = false;
+
+    [SerializeField] Sprite crosshairImage;
 
     Animator anim;
 
