@@ -4,19 +4,6 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
-    public bool IsAiming
-    {
-        get
-        {
-            return isAiming;
-        }
-        set
-        {
-            isAiming = value;
-            anim.SetBool("Aiming", value);
-        }
-    }
-
     public bool IsShooting
     {
         get
@@ -36,22 +23,14 @@ public class GunController : MonoBehaviour {
     [SerializeField] protected float damage = 10f;
     [SerializeField] protected float shotDelay = 1f;
     [SerializeField] protected float ballSpeed = 20f; // TODO maybe give this into the GetBall() function from GameManager
-    [Range(0, 100), SerializeField] protected float critchance = 10f;
-    [SerializeField] protected float recoil = 1f;
+    //[Range(0, 100), SerializeField] protected float critchance = 10f;
+    //[SerializeField] protected float recoil = 1f;
     [SerializeField] protected float numberOfShots = 1f;
-    [Range(0, 100), SerializeField] protected float chanceToMiss = 5f;
-    protected bool isAiming = false;
+    [Range(0, 100), SerializeField] protected float accuracy = 5f;
     [SerializeField] Transform mainMuzzle;
     bool isShooting = false;
 
     [SerializeField] Sprite crosshairImage;
-
-    Animator anim;
-
-	// Use this for initialization
-	protected virtual void Start () {
-        anim = GetComponent<Animator>();
-	}
 
     public virtual void Equip()
     {
@@ -65,7 +44,6 @@ public class GunController : MonoBehaviour {
 
     public virtual void Shoot()
     {
-        anim.SetTrigger("Shoot");
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hitInfo;
         Physics.Raycast(ray, out hitInfo, 1000f);
@@ -86,10 +64,5 @@ public class GunController : MonoBehaviour {
     void ResetShooting()
     {
         isShooting = false;
-    }
-
-    public virtual void Reload()
-    {
-        anim.SetTrigger("Reload");
     }
 }

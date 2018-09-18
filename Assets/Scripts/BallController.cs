@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour {
 
     Rigidbody rb;
-    [SerializeField] float speed = 10f;
+    [SerializeField] float speed = 35f;
 
     private void Awake()
     {
@@ -15,4 +15,9 @@ public class BallController : MonoBehaviour {
     void OnEnable() {
         rb.velocity = transform.forward * speed;
 	}
+
+    private void OnDisable()
+    {
+        rb.velocity = Vector3.zero;
+    }
 }

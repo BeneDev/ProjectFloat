@@ -14,6 +14,9 @@ public class GameManager : Singleton<GameManager> {
 
     [SerializeField] GameObject ball;
     Stack<GameObject> freeBalls = new Stack<GameObject>();
+    [SerializeField] float ballLifeTime = 5f;
+
+    [SerializeField] Material[] possibleBallMaterials;
 
     private void Awake()
     {
@@ -26,6 +29,10 @@ public class GameManager : Singleton<GameManager> {
         for (int i = 0; i < ballPoolingCount; i++)
         {
             GameObject newBall = Instantiate(ball, transform.position, Quaternion.identity, ballParent);
+            if(possibleBallMaterials.Length > 0)
+            {
+                newBall.GetComponent<MeshRenderer>().material = possibleBallMaterials[Random.Range(0, possibleBallMaterials.Length)];
+            }
             newBall.SetActive(false);
             freeBalls.Push(newBall);
         }
@@ -38,7 +45,15 @@ public class GameManager : Singleton<GameManager> {
         b.transform.position = pos;
         b.transform.forward = dir;
         b.SetActive(true);
+        StartCoroutine(GetBallBack(b, ballLifeTime));
         return b;
+    }
+
+    IEnumerator GetBallBack(GameObject ball, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ball.SetActive(false);
+        freeBalls.Push(ball);
     }
 
     public GameObject GetMuzzleFlash(Vector3 pos, Vector3 dir)

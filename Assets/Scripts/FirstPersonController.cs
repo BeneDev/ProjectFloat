@@ -131,18 +131,12 @@ public class FirstPersonController : MonoBehaviour
                 anim.SetTrigger("Shoot");
                 equippedGun.Shoot();
             }
-            if (input.Reload)
+            if (input.Aim)
             {
-                equippedGun.Reload();
-            }
-            if (input.Aim && !equippedGun.IsAiming)
-            {
-                equippedGun.IsAiming = true;
                 anim.SetBool("Aiming", true);
             }
-            else if (!input.Aim && equippedGun.IsAiming)
+            else if (!input.Aim)
             {
-                equippedGun.IsAiming = false;
                 anim.SetBool("Aiming", false);
             }
         }
