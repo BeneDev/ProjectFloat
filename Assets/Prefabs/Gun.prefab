@@ -52,7 +52,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4834997617964024}
   - component: {fileID: 65552121741685224}
-  - component: {fileID: 95162844528145344}
   - component: {fileID: 114304947161590728}
   m_Layer: 9
   m_Name: Gun
@@ -183,8 +182,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1325621402053232}
-  m_LocalRotation: {x: -0.11494193, y: 0.6952849, z: 0.095686726, w: -0.7030016}
-  m_LocalPosition: {x: -2.678358, y: 0.14800003, z: 2.104156}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.88, y: 0.23, z: -3.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4246637872735858}
@@ -373,26 +372,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.92893004, y: 0.22204971, z: 0.2562003}
-  m_Center: {x: -0.24370944, y: 0.11249304, z: 0.0026886463}
---- !u!95 &95162844528145344
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1325621402053232}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_Size: {x: 0.8774818, y: 0.22204971, z: 0.2562003}
+  m_Center: {x: -0.26943356, y: 0.11249304, z: 0.0026886463}
 --- !u!114 &114304947161590728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -407,9 +388,7 @@ MonoBehaviour:
   damage: 10
   shotDelay: 0.2
   ballSpeed: 35
-  critchance: 10
-  recoil: 1
   numberOfShots: 1
-  chanceToMiss: 5
+  accuracy: 5
   mainMuzzle: {fileID: 4290939430587446}
   crosshairImage: {fileID: 21300000, guid: 8f67877637bcab744b4be41df70377c8, type: 3}
