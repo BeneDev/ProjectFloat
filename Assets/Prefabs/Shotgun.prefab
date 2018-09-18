@@ -1404,3 +1404,4 @@ MonoBehaviour:
   numberOfShots: 1
   chanceToMiss: 5
   mainMuzzle: {fileID: 4789442144409362}
+  crosshairImage: {fileID: 21300000, guid: 30dfb2365b9fca741af54deaa04568a7, type: 3}

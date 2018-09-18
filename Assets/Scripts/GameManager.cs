@@ -6,9 +6,14 @@ public class GameManager : Singleton<GameManager> {
 
     [SerializeField] Transform particleParent;
     [SerializeField] int particleInitCount = 50;
+    [SerializeField] Transform ballParent;
+    [SerializeField] int ballPoolingCount = 300;
 
     [SerializeField] GameObject muzzleFlash;
     Stack<GameObject> freeMuzzleFlashs = new Stack<GameObject>();
+
+    [SerializeField] GameObject ball;
+    Stack<GameObject> freeBalls = new Stack<GameObject>();
 
     private void Awake()
     {
@@ -18,11 +23,26 @@ public class GameManager : Singleton<GameManager> {
             newMuzzleFlash.SetActive(false);
             freeMuzzleFlashs.Push(newMuzzleFlash);
         }
+        for (int i = 0; i < ballPoolingCount; i++)
+        {
+            GameObject newBall = Instantiate(ball, transform.position, Quaternion.identity, ballParent);
+            newBall.SetActive(false);
+            freeBalls.Push(newBall);
+        }
+    }
+
+    //TODO maybe give here parameter for balls speed
+    public GameObject GetBall(Vector3 pos, Vector3 dir)
+    {
+        GameObject b = freeBalls.Pop();
+        b.transform.position = pos;
+        b.transform.forward = dir;
+        b.SetActive(true);
+        return b;
     }
 
     public GameObject GetMuzzleFlash(Vector3 pos, Vector3 dir)
     {
-        print(freeMuzzleFlashs.Count);
         GameObject ps = freeMuzzleFlashs.Pop();
         ps.SetActive(true);
         ps.transform.position = pos;

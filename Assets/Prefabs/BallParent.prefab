@@ -9,30 +9,29 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1123633688011294}
+  m_RootGameObject: {fileID: 1863350355292400}
   m_IsPrefabAsset: 1
---- !u!1 &1123633688011294
+--- !u!1 &1863350355292400
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4755373525661738}
-  - component: {fileID: 114047289359002548}
+  - component: {fileID: 4493712283289520}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: BallParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4755373525661738
+--- !u!4 &4493712283289520
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1123633688011294}
+  m_GameObject: {fileID: 1863350355292400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,21 +39,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114047289359002548
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1123633688011294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5e2ce8cba202745ad1db54d0b48cec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleParent: {fileID: 0}
-  particleInitCount: 50
-  ballParent: {fileID: 0}
-  ballPoolingCount: 300
-  muzzleFlash: {fileID: 1556452989436432, guid: 109511e9364b9874d839f285b16eed48,
-    type: 2}
-  ball: {fileID: 1161691723270388, guid: 1ccb13fd0915f194ea2fe1d40a8e511c, type: 2}

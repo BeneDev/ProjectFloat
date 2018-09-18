@@ -27,6 +27,7 @@ public class GunController : MonoBehaviour {
 
     [SerializeField] protected float damage = 10f;
     [SerializeField] protected float shotDelay = 1f;
+    [SerializeField] protected float ballSpeed = 20f; // TODO maybe give this into the GetBall() function from GameManager
     [Range(0, 100), SerializeField] protected float critchance = 10f;
     [SerializeField] protected float recoil = 1f;
     [SerializeField] protected float numberOfShots = 1f;
@@ -59,7 +60,11 @@ public class GunController : MonoBehaviour {
         if(!isShooting)
         {
             anim.SetTrigger("Shoot");
-            GameManager.Instance.GetMuzzleFlash(mainMuzzle.position, transform.forward);
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hitInfo;
+            Physics.Raycast(ray, out hitInfo);
+            Vector3 direction = hitInfo.point - mainMuzzle.transform.position;
+            GameManager.Instance.GetBall(mainMuzzle.position, direction);
             isShooting = true;
         }
     }
