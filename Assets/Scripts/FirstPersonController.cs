@@ -126,14 +126,10 @@ public class FirstPersonController : MonoBehaviour
         }
         if(equippedGun)
         {
-            if (input.Shoot)
+            if (input.Shoot && !equippedGun.IsShooting)
             {
-                anim.SetBool("Aiming", true);
+                anim.SetTrigger("Shoot");
                 equippedGun.Shoot();
-            }
-            else if (!input.Shoot && !input.Aim)
-            {
-                anim.SetBool("Aiming", false);
             }
             if (input.Reload)
             {
@@ -224,6 +220,7 @@ public class FirstPersonController : MonoBehaviour
         equippedGun = gun.gameObject.GetComponent<GunController>();
         equippedGun.transform.parent = gunHolder;
         equippedGun.transform.localPosition = Vector3.zero;
+        equippedGun.transform.localRotation = Quaternion.identity;
         if(OnCrosshairChanged != null)
         {
             OnCrosshairChanged(equippedGun.CrosshairImage);

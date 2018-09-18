@@ -17,6 +17,14 @@ public class GunController : MonoBehaviour {
         }
     }
 
+    public bool IsShooting
+    {
+        get
+        {
+            return isShooting;
+        }
+    }
+
     public Sprite CrosshairImage
     {
         get
@@ -57,29 +65,26 @@ public class GunController : MonoBehaviour {
 
     public virtual void Shoot()
     {
-        if(!isShooting)
+        anim.SetTrigger("Shoot");
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hitInfo;
+        Physics.Raycast(ray, out hitInfo, 1000f);
+        Vector3 direction;
+        if (hitInfo.collider != null)
         {
-            anim.SetTrigger("Shoot");
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            RaycastHit hitInfo;
-            Physics.Raycast(ray, out hitInfo, 1000f);
-            Vector3 direction;
-            if (hitInfo.collider != null)
-            {
-                direction = hitInfo.point - mainMuzzle.transform.position;
-            }
-            else
-            {
-                direction = (mainMuzzle.transform.position + ray.direction * 10f) - mainMuzzle.transform.position;
-            }
-            GameManager.Instance.GetBall(mainMuzzle.position, direction);
-            isShooting = true;
+            direction = hitInfo.point - mainMuzzle.transform.position;
         }
+        else
+        {
+            direction = (mainMuzzle.transform.position + ray.direction * 10f) - mainMuzzle.transform.position;
+        }
+        GameManager.Instance.GetBall(mainMuzzle.position, direction);
+        isShooting = true;
+        Invoke("ResetShooting", shotDelay);
     }
 
-    public void ResetShoot()
+    void ResetShooting()
     {
-        anim.ResetTrigger("Shoot");
         isShooting = false;
     }
 
