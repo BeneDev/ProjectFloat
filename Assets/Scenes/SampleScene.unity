@@ -1305,10 +1305,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114542660546537698, guid: a2e9a78edc48da141bb27fb1132294f9,
+    - target: {fileID: 114796388929466526, guid: a2e9a78edc48da141bb27fb1132294f9,
         type: 2}
-      propertyPath: movementSettings.JumpForce
-      value: 50
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2e9a78edc48da141bb27fb1132294f9, type: 2}
