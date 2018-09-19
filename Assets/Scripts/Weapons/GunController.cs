@@ -20,7 +20,7 @@ public class GunController : MonoBehaviour {
         }
     }
 
-    [SerializeField] protected float damage = 10f;
+    [SerializeField] protected int damage = 10;
     [SerializeField] protected float shotDelay = 1f;
     [SerializeField] protected float ballSpeed = 20f; // TODO maybe give this into the GetBall() function from GameManager
     //[Range(0, 100), SerializeField] protected float critchance = 10f;
@@ -66,7 +66,7 @@ public class GunController : MonoBehaviour {
         {
             direction = (mainMuzzle.transform.position + ray.direction * 10f) - mainMuzzle.transform.position;
         }
-        GameManager.Instance.GetBall(mainMuzzle.position, direction);
+        GameManager.Instance.GetBall(mainMuzzle.position, direction, damage);
         isShooting = true;
         Invoke("ResetShooting", shotDelay);
     }

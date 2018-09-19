@@ -39,11 +39,12 @@ public class GameManager : Singleton<GameManager> {
     }
 
     //TODO maybe give here parameter for balls speed
-    public GameObject GetBall(Vector3 pos, Vector3 dir)
+    public GameObject GetBall(Vector3 pos, Vector3 dir, int damage)
     {
         GameObject b = freeBalls.Pop();
         b.transform.position = pos;
         b.transform.forward = dir;
+        b.GetComponent<BallController>().Damage = damage;
         b.SetActive(true);
         StartCoroutine(GetBallBack(b, ballLifeTime));
         return b;
