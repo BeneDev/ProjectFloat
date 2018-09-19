@@ -171,7 +171,6 @@ public class FirstPersonController : MonoBehaviour
             // Check if the body's current velocity will result in a collision
             if (rb.SweepTest(horizontalMove, out hit, distance))
             {
-                print(hit.collider.gameObject.layer + "||" + groundLayer);
                 if(hit.collider.gameObject.layer == groundLayer)
                 {
                     if (hit.point.y > transform.position.y - capColl.height * 0.25f)

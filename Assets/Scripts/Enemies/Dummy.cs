@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LittleEnemy : BaseEnemy {
+public class Dummy : BaseEnemy {
 
 	
 }

@@ -54,6 +54,7 @@ public class GunController : MonoBehaviour {
 
     public virtual void Shoot()
     {
+        // You can use this ray for hitscan weapons, if needed
         Ray ray = ownerCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hitInfo;
         Physics.Raycast(ray, out hitInfo, 1000f);
