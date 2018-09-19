@@ -180,7 +180,7 @@ public class FirstPersonController : MonoBehaviour
                     // If so, stop the movement
                     rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
                 }
-                else
+                else if(m_IsGrounded)
                 {
                     // Move the character up, so the character takes a step up the collider
                     transform.position += new Vector3(0f, (hit.point.y - (transform.position.y - (capColl.height * 0.5f))) * 1.6f, 0f);

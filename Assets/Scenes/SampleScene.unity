@@ -678,11 +678,6 @@ Prefab:
       propertyPath: m_Name
       value: Cage (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 23539344055372596, guid: c95f1d8ecd80c1f47805c8ebb19ef13d,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ff11fc2a7fecb484eb42f9e60647e412, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c95f1d8ecd80c1f47805c8ebb19ef13d, type: 2}
   m_IsPrefabAsset: 0
@@ -1318,7 +1313,7 @@ Prefab:
     - target: {fileID: 114542660546537698, guid: a2e9a78edc48da141bb27fb1132294f9,
         type: 2}
       propertyPath: movementSettings.JumpForce
-      value: 57
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 114542660546537698, guid: a2e9a78edc48da141bb27fb1132294f9,
         type: 2}
