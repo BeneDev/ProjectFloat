@@ -30,6 +30,8 @@ public class GunController : MonoBehaviour {
     [SerializeField] Transform mainMuzzle;
     bool isShooting = false;
     BoxCollider coll;
+    GameObject owner;
+    Camera ownerCam;
 
     [SerializeField] Sprite crosshairImage;
 
@@ -38,8 +40,10 @@ public class GunController : MonoBehaviour {
         coll = GetComponent<BoxCollider>();
     }
 
-    public virtual void Equip()
+    public virtual void Equip(GameObject owned)
     {
+        owner = owned;
+        ownerCam = owner.GetComponentInChildren<Camera>();
         coll.enabled = false;
     }
 
@@ -50,7 +54,7 @@ public class GunController : MonoBehaviour {
 
     public virtual void Shoot()
     {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = ownerCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hitInfo;
         Physics.Raycast(ray, out hitInfo, 1000f);
         Vector3 direction;
