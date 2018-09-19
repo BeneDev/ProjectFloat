@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shotgun : GunController {
-    
+public class QuickCannon : GunController {
+
 }
