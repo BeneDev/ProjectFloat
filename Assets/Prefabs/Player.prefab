@@ -285,9 +285,10 @@ MonoBehaviour:
   cam: {fileID: 20970407897464714}
   movementSettings:
     Speed: 6
+    AirSpeedMultiplier: 0.035
     RunMultiplier: 1.8
     RunKey: 304
-    JumpForce: 52
+    JumpForce: 55
     SlopeCurveModifier:
       serializedVersion: 2
       m_Curve:
