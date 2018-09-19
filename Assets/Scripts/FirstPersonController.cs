@@ -9,7 +9,7 @@ public class FirstPersonController : MonoBehaviour
     [Serializable]
     public class MovementSettings
     {
-        public float ForwardSpeed = 8.0f;   // Speed when walking forward // Speed when walking sideways
+        public float Speed = 8.0f;   // Speed when walking forward // Speed when walking sideways
         public float RunMultiplier = 2.0f;   // Speed when sprinting
 	    public KeyCode RunKey = KeyCode.LeftShift;
         public float JumpForce = 30f;
@@ -24,7 +24,7 @@ public class FirstPersonController : MonoBehaviour
         public void UpdateDesiredTargetSpeed(Vector2 input)
         {
 	        if (input == Vector2.zero) return;
-			CurrentTargetSpeed = ForwardSpeed;
+			CurrentTargetSpeed = Speed;
 #if !MOBILE_INPUT
 	        if (Input.GetKey(RunKey))
 	        {
@@ -179,6 +179,11 @@ public class FirstPersonController : MonoBehaviour
                 {
                     // If so, stop the movement
                     rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+                }
+                else
+                {
+                    // Move the character up, so the character takes a step up the collider
+                    transform.position += new Vector3(0f, (hit.point.y - (transform.position.y - (capColl.height * 0.5f))) * 1.6f, 0f);
                 }
             }
             else if (rb.velocity.sqrMagnitude < (movementSettings.CurrentTargetSpeed*movementSettings.CurrentTargetSpeed))
