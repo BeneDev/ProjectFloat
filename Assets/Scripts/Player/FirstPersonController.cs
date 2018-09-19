@@ -66,6 +66,8 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] Vector3 gunGrabExtents;
     [SerializeField] Transform gunHolder;
 
+    int groundLayer;
+
     private Rigidbody rb;
     private CapsuleCollider capColl;
     private float m_YRotation;
@@ -106,6 +108,7 @@ public class FirstPersonController : MonoBehaviour
         input = GetComponent<PlayerInput>();
         equippedGun = GetComponentInChildren<GunController>();
         anim = GetComponent<Animator>();
+        groundLayer = LayerMask.NameToLayer("Default");
     }
 
 
@@ -168,20 +171,27 @@ public class FirstPersonController : MonoBehaviour
             // Check if the body's current velocity will result in a collision
             if (rb.SweepTest(horizontalMove, out hit, distance))
             {
-                if(hit.point.y > transform.position.y - capColl.height * 0.25f)
+                print(hit.collider.gameObject.layer + "||" + groundLayer);
+                if(hit.collider.gameObject.layer == groundLayer)
                 {
-                    // If so, stop the movement
-                    rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
-                }
-                else if(isGrounded)
-                {
-                    // Move the character up, so the character takes a step up the collider
-                    transform.position += new Vector3(0f, (hit.point.y - (transform.position.y - (capColl.height * 0.5f))) * 1.6f, 0f);
+                    if (hit.point.y > transform.position.y - capColl.height * 0.25f)
+                    {
+                        // If so, stop the movement
+                        rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+                    }
+                    else if (isGrounded)
+                    {
+                        // Move the character up, so the character takes a step up the collider
+                        transform.position += new Vector3(0f, (hit.point.y - (transform.position.y - (capColl.height * 0.5f))) * 1.6f, 0f);
+                    }
                 }
             }
             else if (rb.velocity.sqrMagnitude < (movementSettings.CurrentTargetSpeed*movementSettings.CurrentTargetSpeed))
             {
-                rb.AddForce(desiredMove*SlopeMultiplier(), ForceMode.Impulse);
+                if(!isOnSlope)
+                {
+                    rb.AddForce(desiredMove*SlopeMultiplier(), ForceMode.Impulse);
+                }
             }
         }
 
