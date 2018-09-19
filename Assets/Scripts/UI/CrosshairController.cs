@@ -11,8 +11,15 @@ public class CrosshairController : MonoBehaviour {
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
-        player.OnCrosshairChanged += ChangeCrosshair;
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if(playerObj)
+        {
+            player = playerObj.GetComponent<FirstPersonController>();
+        }
+        if(player)
+        {
+            player.OnCrosshairChanged += ChangeCrosshair;
+        }
     }
 
     void ChangeCrosshair(Sprite newCrosshair)

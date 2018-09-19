@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 114177674954153776}
   - component: {fileID: 114542660546537698}
   - component: {fileID: 95152382014559360}
+  - component: {fileID: 114591120635239166}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -342,6 +343,38 @@ MonoBehaviour:
     m_Bits: 512
   gunGrabExtents: {x: 3, y: 3, z: 3}
   gunHolder: {fileID: 4203521099677268}
+--- !u!114 &114591120635239166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1926308586361592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 162
+    i1: 233
+    i2: 167
+    i3: 142
+    i4: 220
+    i5: 72
+    i6: 218
+    i7: 20
+    i8: 27
+    i9: 178
+    i10: 127
+    i11: 177
+    i12: 19
+    i13: 34
+    i14: 148
+    i15: 249
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114610561499015610
 MonoBehaviour:
   m_ObjectHideFlags: 1
