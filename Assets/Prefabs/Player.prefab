@@ -211,10 +211,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 20970407897464714}
   movementSettings:
-    ForwardSpeed: 8
-    RunMultiplier: 2
+    Speed: 6
+    RunMultiplier: 1.8
     RunKey: 304
-    JumpForce: 50
+    JumpForce: 52
     SlopeCurveModifier:
       serializedVersion: 2
       m_Curve:
@@ -262,7 +262,7 @@ MonoBehaviour:
     groundCheckDistance: 0.1
     stickToGroundHelperDistance: 0.6
     slowDownRate: 20
-    airControl: 0
+    airControl: 1
     shellOffset: 0
   gunLayer:
     serializedVersion: 2
