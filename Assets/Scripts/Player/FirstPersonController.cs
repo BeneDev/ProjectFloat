@@ -70,7 +70,7 @@ public class FirstPersonController : MonoBehaviour
     private CapsuleCollider capColl;
     private float m_YRotation;
     private Vector3 m_GroundContactNormal;
-    private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
+    private bool jump, isPreviouslyGrounded, isJumping, isGrounded, isOnSlope;
 
 
     public Vector3 Velocity
@@ -80,12 +80,12 @@ public class FirstPersonController : MonoBehaviour
 
     public bool Grounded
     {
-        get { return m_IsGrounded; }
+        get { return isGrounded; }
     }
 
     public bool Jumping
     {
-        get { return m_Jumping; }
+        get { return isJumping; }
     }
 
     public bool Running
@@ -113,9 +113,9 @@ public class FirstPersonController : MonoBehaviour
     {
         RotateView();
 
-        if (input.Jump && !m_Jump)
+        if (input.Jump && !jump)
         {
-            m_Jump = true;
+            jump = true;
         }
         if(equippedGun)
         {
@@ -145,7 +145,7 @@ public class FirstPersonController : MonoBehaviour
         GroundCheck();
         Vector2 inputDir = GetInput();
 
-        if ((Mathf.Abs(inputDir.x) > float.Epsilon || Mathf.Abs(inputDir.y) > float.Epsilon) && (advancedSettings.airControl || m_IsGrounded))
+        if ((Mathf.Abs(inputDir.x) > float.Epsilon || Mathf.Abs(inputDir.y) > float.Epsilon) && (advancedSettings.airControl || isGrounded))
         {
             // always move along the camera forward as it is the direction that it being aimed at
             Vector3 desiredMove = cam.transform.forward*inputDir.y + cam.transform.right*inputDir.x;
@@ -173,7 +173,7 @@ public class FirstPersonController : MonoBehaviour
                     // If so, stop the movement
                     rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
                 }
-                else if(m_IsGrounded)
+                else if(isGrounded)
                 {
                     // Move the character up, so the character takes a step up the collider
                     transform.position += new Vector3(0f, (hit.point.y - (transform.position.y - (capColl.height * 0.5f))) * 1.6f, 0f);
@@ -185,19 +185,19 @@ public class FirstPersonController : MonoBehaviour
             }
         }
 
-        if (m_IsGrounded)
+        if (isGrounded)
         {
             rb.drag = 5f;
 
-            if (m_Jump)
+            if (jump)
             {
                 rb.drag = 0f;
                 rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
                 rb.AddForce(new Vector3(0f, movementSettings.JumpForce, 0f), ForceMode.Impulse);
-                m_Jumping = true;
+                isJumping = true;
             }
 
-            if (!m_Jumping && Mathf.Abs(inputDir.x) < float.Epsilon && Mathf.Abs(inputDir.y) < float.Epsilon && rb.velocity.magnitude < 1f)
+            if (!isJumping && Mathf.Abs(inputDir.x) < float.Epsilon && Mathf.Abs(inputDir.y) < float.Epsilon && rb.velocity.magnitude < 1f)
             {
                 rb.Sleep();
             }
@@ -205,12 +205,16 @@ public class FirstPersonController : MonoBehaviour
         else
         {
             rb.drag = 0f;
-            if (m_PreviouslyGrounded && !m_Jumping)
+            if (isPreviouslyGrounded && !isJumping)
             {
                 StickToGroundHelper();
             }
         }
-        m_Jump = false;
+        if(isOnSlope)
+        {
+            rb.drag = 0f;
+        }
+        jump = false;
     }
 
     void LookForGunsToEquip()
@@ -288,7 +292,7 @@ public class FirstPersonController : MonoBehaviour
 
         mouseLook.LookRotation (transform, cam.transform);
 
-        if (m_IsGrounded || advancedSettings.airControl)
+        if (isGrounded || advancedSettings.airControl)
         {
             // Rotate the rigidbody velocity to match the new direction that the character is looking
             Quaternion velRotation = Quaternion.AngleAxis(transform.eulerAngles.y - oldYRotation, Vector3.up);
@@ -299,22 +303,30 @@ public class FirstPersonController : MonoBehaviour
     /// sphere cast down just beyond the bottom of the capsule to see if the capsule is colliding round the bottom
     private void GroundCheck()
     {
-        m_PreviouslyGrounded = m_IsGrounded;
+        isPreviouslyGrounded = isGrounded;
         RaycastHit hitInfo;
         if (Physics.SphereCast(transform.position, capColl.radius * (1.0f - advancedSettings.shellOffset), Vector3.down, out hitInfo,
                                 ((capColl.height/2f) - capColl.radius) + advancedSettings.groundCheckDistance, Physics.AllLayers, QueryTriggerInteraction.Ignore))
         {
-            m_IsGrounded = true;
+            isGrounded = true;
             m_GroundContactNormal = hitInfo.normal;
+            if(hitInfo.collider.gameObject.tag == "Slope")
+            {
+                isOnSlope = true;
+            }
+            else
+            {
+                isOnSlope = false;
+            }
         }
         else
         {
-            m_IsGrounded = false;
+            isGrounded = false;
             m_GroundContactNormal = Vector3.up;
         }
-        if (!m_PreviouslyGrounded && m_IsGrounded && m_Jumping)
+        if (!isPreviouslyGrounded && isGrounded && isJumping)
         {
-            m_Jumping = false;
+            isJumping = false;
         }
     }
 }
