@@ -235,10 +235,15 @@ public class FirstPersonController : MonoBehaviour
 
     private void EquipGun(Collider gun)
     {
+        if(equippedGun)
+        {
+            equippedGun.Unequip();
+        }
         equippedGun = gun.gameObject.GetComponent<GunController>();
         equippedGun.transform.parent = gunHolder;
         equippedGun.transform.localPosition = Vector3.zero;
         equippedGun.transform.localRotation = Quaternion.identity;
+        equippedGun.Equip();
         if(OnCrosshairChanged != null)
         {
             OnCrosshairChanged(equippedGun.CrosshairImage);

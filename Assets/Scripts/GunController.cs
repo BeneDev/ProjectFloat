@@ -29,17 +29,23 @@ public class GunController : MonoBehaviour {
     [Range(0, 100), SerializeField] protected float accuracy = 5f;
     [SerializeField] Transform mainMuzzle;
     bool isShooting = false;
+    BoxCollider coll;
 
     [SerializeField] Sprite crosshairImage;
 
+    private void Awake()
+    {
+        coll = GetComponent<BoxCollider>();
+    }
+
     public virtual void Equip()
     {
-
+        coll.enabled = false;
     }
 
     public virtual void Unequip()
     {
-
+        coll.enabled = true;
     }
 
     public virtual void Shoot()
