@@ -9,45 +9,74 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1318291407480166}
+  m_RootGameObject: {fileID: 1445897060618042}
   m_IsPrefabAsset: 1
---- !u!1 &1318291407480166
+--- !u!1 &1445897060618042
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4311483646978934}
-  - component: {fileID: 33223739319716824}
-  - component: {fileID: 23777851063714292}
-  - component: {fileID: 64555798342695396}
+  - component: {fileID: 4480096649003134}
   m_Layer: 0
-  m_Name: RoundSlope
+  m_Name: RikiSlope
   m_TagString: Slope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4311483646978934
+--- !u!1 &1462801572679860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4659043808856828}
+  - component: {fileID: 33454512647521756}
+  - component: {fileID: 23881341259718406}
+  - component: {fileID: 64205773957240676}
+  m_Layer: 0
+  m_Name: Circle
+  m_TagString: Slope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4480096649003134
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1318291407480166}
-  m_LocalRotation: {x: -0.50000006, y: -0.5, z: -0.5, w: 0.49999997}
-  m_LocalPosition: {x: 8.28, y: 7.58, z: -33.48}
-  m_LocalScale: {x: 166.93652, y: 21.011543, z: 3.9157283}
-  m_Children: []
+  m_GameObject: {fileID: 1445897060618042}
+  m_LocalRotation: {x: -0, y: -0.70710665, z: -0, w: 0.70710695}
+  m_LocalPosition: {x: 6.45, y: 2.35, z: -33.68}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4659043808856828}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -90.00001}
---- !u!23 &23777851063714292
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+--- !u!4 &4659043808856828
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462801572679860}
+  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 6.210969, z: -1.692631}
+  m_LocalScale: {x: 118.17892, y: 118.17892, z: 118.17892}
+  m_Children: []
+  m_Father: {fileID: 4480096649003134}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23881341259718406
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1318291407480166}
+  m_GameObject: {fileID: 1462801572679860}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -77,19 +106,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33223739319716824
+--- !u!33 &33454512647521756
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1318291407480166}
-  m_Mesh: {fileID: 4300000, guid: a78521c16860ec34b8cac81c87dcce4b, type: 3}
---- !u!64 &64555798342695396
+  m_GameObject: {fileID: 1462801572679860}
+  m_Mesh: {fileID: 4300000, guid: 26a1246e96744e0468753986ac07dcbe, type: 3}
+--- !u!64 &64205773957240676
 MeshCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1318291407480166}
+  m_GameObject: {fileID: 1462801572679860}
   m_Material: {fileID: 13400000, guid: fb0b256e9c57fc24e855944d1b7c1f3c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -97,4 +126,4 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: a78521c16860ec34b8cac81c87dcce4b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 26a1246e96744e0468753986ac07dcbe, type: 3}
