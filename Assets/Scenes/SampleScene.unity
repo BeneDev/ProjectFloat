@@ -1337,12 +1337,12 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7f3d78e5c1772fe4e8f7bb3e67a8bfbf, type: 2}
+      objectReference: {fileID: 2100000, guid: 032b5286e17b0514fa1d1854a7eca48a, type: 2}
     - target: {fileID: 23685809048882292, guid: 32120d982bd3975468f8253ba4fb74e2,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7f3d78e5c1772fe4e8f7bb3e67a8bfbf, type: 2}
+      objectReference: {fileID: 2100000, guid: 032b5286e17b0514fa1d1854a7eca48a, type: 2}
     - target: {fileID: 4182089470074546, guid: 32120d982bd3975468f8253ba4fb74e2, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
@@ -2701,7 +2701,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7f3d78e5c1772fe4e8f7bb3e67a8bfbf, type: 2}
+      objectReference: {fileID: 2100000, guid: 032b5286e17b0514fa1d1854a7eca48a, type: 2}
     - target: {fileID: 23685809048882292, guid: 32120d982bd3975468f8253ba4fb74e2,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -2787,7 +2787,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4477910545284612, guid: caa80bbbf33a6764aa1f1a93b37ec912, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 18.717916
+      value: 18.659
       objectReference: {fileID: 0}
     - target: {fileID: 4477910545284612, guid: caa80bbbf33a6764aa1f1a93b37ec912, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6086,11 +6086,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 23721961589874286, guid: 32120d982bd3975468f8253ba4fb74e2,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7f3d78e5c1772fe4e8f7bb3e67a8bfbf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32120d982bd3975468f8253ba4fb74e2, type: 2}
   m_IsPrefabAsset: 0
@@ -6772,7 +6767,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 032b5286e17b0514fa1d1854a7eca48a, type: 2}
+  - {fileID: 2100000, guid: ec5d7ed8862fd664d9bd4a60a64b69cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
