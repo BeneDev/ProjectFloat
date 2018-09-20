@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrampolineController : MonoBehaviour {
 
     [SerializeField] float upForce = 5f;
+    [SerializeField] float initUpForce = 10f;
     [SerializeField] float jumpDuration = 1f;
 
     private void OnCollisionEnter(Collision collision)
@@ -12,6 +13,7 @@ public class TrampolineController : MonoBehaviour {
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         if(rb)
         {
+            StopCoroutine(ApplyForce(rb));
             StartCoroutine(ApplyForce(rb));
         }
     }
@@ -19,7 +21,7 @@ public class TrampolineController : MonoBehaviour {
     IEnumerator ApplyForce(Rigidbody rb)
     {
         rb.useGravity = false;
-        rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * initUpForce, ForceMode.Impulse);
         for (float t = 0f; t < jumpDuration; t += Time.deltaTime)
         {
             //rb.velocity = new Vector3(rb.velocity.x, -upForce, rb.velocity.z);

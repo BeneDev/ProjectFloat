@@ -342,9 +342,7 @@ MonoBehaviour:
     m_Bits: 512
   gunGrabExtents: {x: 3, y: 3, z: 3}
   gunHolder: {fileID: 4203521099677268}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  maxYVelocity: 8
 --- !u!114 &114610561499015610
 MonoBehaviour:
   m_ObjectHideFlags: 1

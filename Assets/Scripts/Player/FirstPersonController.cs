@@ -66,6 +66,8 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] Vector3 gunGrabExtents;
     [SerializeField] Transform gunHolder;
 
+    [SerializeField] float maxYVelocity = 10f;
+
     int groundLayer;
 
     private Rigidbody rb;
@@ -218,6 +220,11 @@ public class FirstPersonController : MonoBehaviour
             {
                 StickToGroundHelper();
             }
+        }
+        print(rb.velocity.y);
+        if(rb.velocity.y >= maxYVelocity)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, maxYVelocity, rb.velocity.z);
         }
         if(isOnSlope)
         {
